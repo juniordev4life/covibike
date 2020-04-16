@@ -56,28 +56,9 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    [
-      'nuxt-i18n',
-      {
-        detectBrowserLanguage: false
-      }
-    ],
     'cookie-universal-nuxt',
     'nuxt-leaflet'
   ],
-  i18n: {
-    strategy: 'prefix_except_default',
-    locales: ['de', 'gb'],
-    lazy: true,
-    defaultLocale: 'de',
-    vueI18n: {
-      fallbackLocale: 'de',
-      messages: {
-        gb: require('./locale/en-GB.json'),
-        de: require('./locale/de-DE.json')
-      }
-    }
-  },
   env: {},
   /*
    ** Axios module configuration

@@ -1,6 +1,6 @@
-# shortaway
+# covibike
 
-> My world-class Nuxt.js project
+A short project as a task during a hiring process.
 
 ## Build Setup
 
