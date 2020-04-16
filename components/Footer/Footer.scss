@@ -1,0 +1,75 @@
+@import '../../scss/_global.scss';
+
+.c-footer {
+  position: relative;
+  background-color: $color-blue;
+  padding: 36px 0 24px;
+  color: $color-white;
+  margin-top: 24px;
+}
+
+.c-footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  @include mq($until: phone-up) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.c-footer__link-element {
+  margin-bottom: 12px;
+}
+
+.c-footer__links {
+  list-style: none;
+  flex: 0 1 50%;
+
+  @include mq($until: phone-up) {
+    width: 100%;
+  }
+}
+
+.c-footer__link {
+  color: $color-white;
+  font-size: 1.1rem;
+}
+
+.c-footer__apps {
+  flex: 0 1 50%;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-footer__apps-headline {
+  flex: 0 1 100%;
+  color: $color-white;
+}
+
+.c-footer__app-buttons {
+  flex: 0 1 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  @include mq($until: phone-up) {
+    justify-content: space-between;
+  }
+}
+
+.c-footer__app-button {
+  margin-right: 32px;
+
+  @include mq($until: phone-up) {
+    margin-right: 0;
+  }
+}
+
+.c-footer__copy {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.8rem;
+}

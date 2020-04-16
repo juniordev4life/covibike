@@ -1,0 +1,182 @@
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+/// @example
+///   .my-element {
+///       display: flex;
+///
+///       @include when-inside('.no-flexbox') {
+///            display: table;
+///       }
+///   }
+///   Output:
+///   .my-element {
+///       display: flex;
+///   }
+///   .no-flexbox .my-element {
+///       display: table;
+///   }
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+/// Create a square container
+/// @param {String} $width
+/// @param {String} $height [default $width]
+/// @example
+///   .square-container {
+///     @include square(60px);
+///   }
+///   Output:
+///   .square-container {
+///     width: 60px;
+///     height: 60px;
+///   }
+@mixin square($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/// Mixin to create simple a circle element with only one specification
+/// @example
+///   .c-backtotop {
+///       font-size: rem(26);
+///
+///       @include circle(60px);
+///
+///   }
+///   Output:
+///   .c-backtotop__show {
+///       font-size: 1.52941rem;
+///       width: 60px;
+///       height: 60px;
+///       border-radius: 30px;
+///   }
+///
+@mixin circle($width) {
+  width: $width;
+  height: $width;
+  border-radius: $width / 2;
+}
+
+/// Mixin to define an aspect ratio
+/// @example
+///   .c-card__image {
+///       @include aspect-ratio(16,9);
+///   }
+///   Output:
+///   .c-card__image {
+///       position: relative;
+///   }
+///   .c-card__image:before {
+///       display: block;
+///       content: " ";
+///       width: 100%;
+///       padding-top: 56.25%; }
+///   .c-card__image > .content {
+///       position: absolute;
+///       top: 0;
+///       left: 0;
+///       right: 0;
+///       bottom: 0;
+///   }
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &::before {
+    display: block;
+    content: ' ';
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+/// Mixin to truncate block
+/// @example
+///   .c-accordion__region-text {
+///       @include truncate(55%);
+///   }
+///   Output:
+///   .c-accordion__region-text {
+///       max-width: 55%;
+///       white-space: nowrap;
+///       overflow: hidden;
+///       text-overflow: ellipsis;
+///   }
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/// Mixin for additional form field content
+/// @example
+///   .c-traveler__content {
+///       @include addition-form-field-content();
+///   }
+///   Output:
+///   .c-accordion__region-text {
+///       max-width: 55%;
+///       white-space: nowrap;
+///       overflow: hidden;
+///       text-overflow: ellipsis;
+///   }
+@mixin addition-form-field-content() {
+  background: $treasure-map-color__white;
+  border-radius: 5px;
+  border: 1px solid $treasure-map-color__ashgray;
+  position: absolute;
+  padding: 10px 20px 30px;
+  margin-top: 70px;
+  overflow-y: visible;
+  animation: fade-in-down .2s ease-out forwards;
+  z-index: 100;
+
+  &::before,
+  &::after {
+    bottom: 100%;
+    left: 20px;
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &::before {
+    border-color: rgba(184, 184, 184, 0);
+    border-bottom-color: $treasure-map-color__ashgray;
+    border-width: 6px;
+    margin-left: -6px;
+  }
+
+  &::after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: $treasure-map-color__white;
+    border-width: 5px;
+    margin-left: -5px;
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    top: -10px;
+    opacity: 0;
+  }
+  to {
+    top: 3px;
+    opacity: 1;
+  }
+}

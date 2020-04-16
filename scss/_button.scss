@@ -1,0 +1,32 @@
+@import './global.scss';
+
+@mixin button() {
+  padding: 6px 12px;
+  font-size: 1rem;
+  border: 2px solid $color-blue;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+@mixin button-primary() {
+  @include button;
+  border-color: $color-blue;
+  background: $color-blue;
+  color: $color-white;
+
+  &:hover {
+    background: darken($color-blue, 8%);
+    transition: all 0.3s ease;
+  }
+
+  &:active {
+    background: darken($color-blue, 25%);
+    color: $color-white;
+  }
+
+  &:visited,
+  &:focus {
+    color: $color-white;
+  }
+}

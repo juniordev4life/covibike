@@ -1,0 +1,39 @@
+.c-map
+  .c-map__loading(v-if="loading")
+    .spinner
+      .double-bounce1
+      .double-bounce2
+  .c-map__city-select
+    CitySelect(@selectCity="updateMap")
+  img.c-map__search-my-location-icon(v-show="geoLocationPermision" src="~/assets/location.svg" alt="search my location" @click="shareLocation")
+  client-only
+    l-map(:zoom="14" :center="mapCenter" @update:center="updateCenter")
+      l-tile-layer(url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png")
+      l-marker(v-for="(location, index) in locations" :key="index" :lat-lng="location.position" @click="showDetails(location)")
+        l-icon(v-if="location.isStation && location.totalFreeBikes == 0")
+          div(style="position:relative;")
+            img(src="~/assets/station-marker-empty.svg" alt="icon" width="45")
+            div(style="position:absolute;top:10px;left:0;text-align:center;width:45px;")
+              p.c-map__marker-text {{ location.totalFreeBikes }}
+        l-icon(v-else-if="location.isStation && location.totalFreeBikes > 0")
+          div(style="position:relative;")
+            img(src="~/assets/station-marker.svg" alt="icon" width="45")
+            div(style="position:absolute;top:10px;left:0;text-align:center;width:45px;")
+              p.c-map__marker-text {{ location.totalFreeBikes }}
+        l-icon(v-else="")
+          img(src="~/assets/bike-marker.svg" alt="icon" width="45")
+      l-polygon(v-if="zones" :lat-lngs="zones" color="#ffffff" fillColor="#000000" :fillOpacity="zoneOpacity")
+      l-control.c-map__back-control(:position="'bottomleft'")
+        nuxt-link.c-map__back-button(to="/") Zur Startseite
+    c-modal(name="askforlocation")
+      .c-map__ask-for-location-content
+        img.c-map__ask-for-location-image(src="~/assets/easy.png" alt="ask for location")
+        .c-map__ask-for-location-text-and-buttons
+          .c-map__ask-for-location-text
+            span
+              | Um Ihnen die Suche zu erleichtern können Sie Ihren Standort mit
+              | uns teilen. Dann finden Sie noch schneller Ihr COVIBIKE.
+          .c-map__ask-for-location-buttons
+            span.c-map__button-share-location(@click="shareLocation") Standort teilen
+            span.c-map__button(@click="closeAskForLocation") Nicht teilen
+    ModalDetails(:details="locationsDetails")

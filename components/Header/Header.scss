@@ -1,0 +1,30 @@
+@import '../../scss/_global.scss';
+
+.c-header {
+  position: relative;
+  height: 110px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  @include mq($until: phone-up) {
+    flex-wrap: wrap;
+    padding: 0
+  }
+}
+
+.c-header__logo-link {
+  @include mq($until: phone-up) {
+    margin: 10px auto 0;
+  }
+}
+
+.c-header__logo {
+  height: 100px;
+
+  @include mq($until: phone-up) {
+    height: 50px;
+    margin: 0 auto;
+  }
+}

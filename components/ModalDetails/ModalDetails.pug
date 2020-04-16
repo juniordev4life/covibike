@@ -1,0 +1,28 @@
+c-modal(name="details")
+  img.c-map__location-details-close(src="~/assets/close.svg" width="40" alt="close" @click="hideDetails")
+  .c-map__location-details-headline(v-if="details.isStation")
+    | COVIBIKE - Station
+  .c-map__location-details-headline(v-else="") COVIBIKE
+  .c-map__location-details-content
+    img.c-map__location-details-image(v-if="details.isStation && details.totalBikes == 0" src="~/assets/station-empty.svg" alt="covibike-image-details")
+    img.c-map__location-details-image(v-else-if="details.isStation && details.totalBikes > 0" src="~/assets/station.svg" alt="covibike-image-details")
+    img.c-map__location-details-image(v-else="" src="~/assets/covibike-bike.svg" alt="covibike-image-details")
+    ul.c-map__location-details-list
+      li
+        img.c-map__location-details-icon(src="~/assets/address.svg" alt="address-icon" width="12")
+        span.c-map__location-details-icon-text {{ details.address }}
+      li
+        hr
+      li.c-map__location-details-bike-details(v-if="details.isStation")
+        p(v-if="details.totalBikes > 0")
+          | Freie COVIBIKES: {{ details.totalBikes }}
+        p(v-else="") Keine COVIBIKES momentan verfügbar.
+      li.c-map__location-details-bike-details(v-else="")
+        p Freies COVIBIKE:
+        p
+          img.c-map__location-details-icon(src="~/assets/label.svg" alt="address-icon" width="15")
+          span.c-map__location-details-icon-text {{ details.freeBikes[0].brand.name }}
+        p
+          img.c-map__location-details-icon(src="~/assets/id-number.svg" alt="id-number" width="15")
+          span.c-map__location-details-icon-text {{ details.freeBikes[0].number }}
+  span.c-map__location-details-button Reservieren

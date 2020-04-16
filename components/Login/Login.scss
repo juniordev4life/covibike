@@ -1,0 +1,32 @@
+@import '../../scss/_global.scss';
+
+.c-login {
+  position: relative;
+}
+
+.c-login__headline {
+  font-size: 1.5rem;
+  color: $color-blue;
+}
+
+.c-login__login-form {
+  text-align: center;
+}
+
+.c-login__google {
+  width: 250px;
+  height: 50px;
+  margin: 10px auto;
+}
+
+.abcRioButton {
+  padding: 0 15px;
+}
+
+.v-facebook-login {
+  width: 250px;
+  height: 50px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+  margin: 10px auto;
+  cursor: pointer !important;
+}

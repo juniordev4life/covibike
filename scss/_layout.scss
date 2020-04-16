@@ -1,0 +1,127 @@
+@import './global.scss';
+@import './mq.scss';
+@import './button.scss';
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8rem;
+  font-display: swap;
+  color: $color-font;
+}
+
+h1,
+h2,
+h3 {
+  color: $color-blue;
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+a,
+a:hover,
+a:visited,
+a:active,
+a:focus {
+  text-decoration: none;
+}
+
+.l-container {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1300px;
+
+  @include mq($until: tablet-landscape-up) {
+    padding: 0 16px;
+  }
+
+  @include mq($until: tablet-portrait-up) {
+    margin-bottom: 24px;
+  }
+}
+
+.l-container__flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include mq($until: phone-up) {
+    flex-direction: column;
+  }
+}
+
+.l-text__overlay {
+  position: absolute;
+  top: 40%;
+
+  @include mq($until: tablet-portrait-up) {
+    position: relative;
+    top: 0;
+    padding: 0 0 24px 0;
+  }
+}
+
+.l-text__overlay--40 {
+  width: 40%;
+
+  @include mq($until: tablet-portrait-up) {
+    width: 100%;
+  }
+}
+
+.l-text__50 {
+  flex: 0 1 50%;
+  width: 50%;
+
+  @include mq($until: phone-up) {
+    width: 100%;
+  }
+}
+
+.l-text__mobile-last {
+  @include mq($until: phone-up) {
+    order: 99;
+    margin-top: 24px;
+  }
+}
+
+.l-text-overlay-button {
+  @include button-primary();
+  margin: 16px auto 0;
+  display: block;
+  width: 60%;
+
+  @include mq($until: phone-up) {
+    width: 80%;
+  }
+}
+
+/*
+Overwrite Classes for vue-js-modal
+*/
+
+.v--modal-overlay .v--modal-box {
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.v--modal-box[style] {
+  height: auto !important;
+
+  @include mq($until: phone-up) {
+    width: 80% !important;
+    left: 10% !important;
+    top: 20vh !important;
+  }
+}

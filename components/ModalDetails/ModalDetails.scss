@@ -1,0 +1,9 @@
+@import '../../scss/_global.scss';
+@import '../../scss/_button.scss';
+
+.c-map__location-details-button {
+  @include button-primary();
+  margin: 0 auto;
+  display: block;
+  width: 40%;
+}

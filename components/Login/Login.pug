@@ -1,0 +1,13 @@
+.c-login
+  c-modal(name="login")
+    .c-login__login-form
+      .c-login__headline Please Login
+      .c-login__social-button
+        VFacebookLogin(app-id="471653120213035" @login="loginFacebook" @logout="logoutFacebook")
+          template(v-slot:login) Sign in with Facebook
+  c-modal(name="profile")
+    h1 Profile
+    p Name: {{ loginData.name }}
+    p E-mail: {{ loginData.email }}
+    VFacebookLogin(app-id="471653120213035" @logout="logoutFacebook")
+        template(v-slot:login) Sign in with Facebook
