@@ -27,7 +27,7 @@ export default {
     logoutFacebook() {
       this.$store.commit('resetAvatarUrl')
       this.$store.commit('updateIsLoggedIn', false)
-      this.$modal.hide('login')
+      this.$modal.hide('profile')
     }
   }
 }

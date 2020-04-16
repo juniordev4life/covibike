@@ -21,11 +21,6 @@ export default {
       } else {
         this.$modal.show('login')
       }
-    },
-    logoutFacebook() {
-      this.$store.commit('resetAvatarUrl')
-      this.$store.commit('updateIsLoggedIn', false)
-      this.$modal.hide('profile')
     }
   }
 }
